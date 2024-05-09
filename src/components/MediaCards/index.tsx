@@ -14,11 +14,10 @@ const MediaCards = ({ cards }: MediaCardsProps) => {
   return (
     <section className="cards">
       {cards.map((card) => {
-        //@ts-ignore
-        const title = card?.title ?? card?.name;
+        const title =
+          ("title" in card ? card.title : (card as TVShow).name) ?? "";
         let type = "Movie";
-        //@ts-ignore
-        if (card?.name) {
+        if ("name" in card) {
           type = "TVShow";
         }
         const imageSrc = card.poster_path
